@@ -5,6 +5,7 @@ import {
   useMotionValueEvent,
 } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 import { WordsPullUpMultiStyle } from '../components/WordsPullUpMultiStyle';
 
 // ---- Competitors (fixed rows) ----
@@ -88,16 +89,19 @@ export default function Ladder() {
     offset: ['start start', 'end end'],
   });
 
-  // Position 28 → 1 linearly by scroll
-  const posMV = useTransform(scrollYProgress, [0, 1], [28, 1]);
+  // Clamped scroll progress — metrics reach peak at 0.7 and stay for last 30%
+  const climbProg = useTransform(scrollYProgress, [0, 0.7], [0, 1]);
+
+  // Position 28 → 1 linearly by climb progress (clamps at 1 for scroll > 0.7)
+  const posMV = useTransform(climbProg, [0, 1], [28, 1]);
   const yourTopMV = useTransform(posMV, (p: number) => yourYFromPos(p));
 
   // Metrics
-  const impressionsMV = useTransform(scrollYProgress, (p) => 12 + Math.pow(p, 2.3) * (42786 - 12));
-  const clicksMV      = useTransform(scrollYProgress, (p) => Math.pow(p, 2.5) * 5428);
-  const ctrMV         = useTransform(scrollYProgress, (p) => Math.pow(p, 2) * 12.7);
-  const leadsMV       = useTransform(scrollYProgress, (p) => Math.pow(p, 2.8) * 247);
-  const revenueMV     = useTransform(scrollYProgress, (p) => 12 + Math.pow(p, 3) * (2100 - 12));
+  const impressionsMV = useTransform(climbProg, (p) => 12 + Math.pow(p, 2.3) * (42786 - 12));
+  const clicksMV      = useTransform(climbProg, (p) => Math.pow(p, 2.5) * 5428);
+  const ctrMV         = useTransform(climbProg, (p) => Math.pow(p, 2) * 12.7);
+  const leadsMV       = useTransform(climbProg, (p) => Math.pow(p, 2.8) * 247);
+  const revenueMV     = useTransform(climbProg, (p) => 12 + Math.pow(p, 3) * (2100 - 12));
 
   const [pos, setPos] = useState(28);
   const [impressions, setImpressions] = useState(12);
@@ -117,7 +121,7 @@ export default function Ladder() {
   const ladderHeight = COMPETITORS.length * PITCH;
 
   return (
-    <section ref={ref} className="relative bg-[#0E1424]" style={{ height: '550vh' }}>
+    <section ref={ref} className="relative bg-[#0E1424]" style={{ height: '800vh' }}>
 
 
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
@@ -223,12 +227,11 @@ export default function Ladder() {
                     #{pos}
                   </span>
                   <span className="w-7 h-7 rounded-md bg-white flex items-center justify-center shrink-0 overflow-hidden">
-                    <svg viewBox="0 0 32 32" className="w-5 h-5" aria-hidden>
-                      <rect x="2" y="2" width="28" height="28" rx="6" fill={Y_YELLOW} />
-                      <path
-                        d="M11 9h6.5c2.6 0 4.3 1.4 4.3 3.7 0 1.7-1 2.8-2.4 3.3 1.7.4 2.8 1.7 2.8 3.6 0 2.6-1.9 4.2-4.7 4.2H11V9zm2.6 6.6h3c1.2 0 1.9-.6 1.9-1.5 0-1-.7-1.5-1.9-1.5h-3v3zm0 5.8h3.4c1.3 0 2.1-.6 2.1-1.7 0-1.1-.8-1.7-2.1-1.7h-3.4v3.4z"
-                        fill="#000"
-                      />
+                    <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]" aria-hidden fill="none" stroke="#6b7280" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="M3 12h18" />
+                      <path d="M12 3c2.5 3 2.5 15 0 18" />
+                      <path d="M12 3c-2.5 3-2.5 15 0 18" />
                     </svg>
                   </span>
                   <div className="flex-1 min-w-0">
@@ -298,6 +301,25 @@ export default function Ladder() {
                     : `${(revenueK / 1000).toFixed(1).replace('.', ',')}M ₽`}
                 </span>
               </div>
+
+              {/* Repeat-result CTA — visible only at TOP-1 */}
+              <a
+                href="https://t.me/TopPfBot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center justify-between rounded-xl px-4 py-3 mt-1 transition-all duration-500 ${
+                  youAtTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
+                }`}
+                style={{ background: '#FFFFFF', color: '#000' }}
+              >
+                <span className="text-sm font-semibold">Повторить результат</span>
+                <span
+                  className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
+                  style={{ background: '#000' }}
+                >
+                  <ArrowRight size={14} color="#FFCC00" strokeWidth={2.5} />
+                </span>
+              </a>
             </div>
           </div>
         </div>
