@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { SplineScene } from '../components/ui/splite';
 
 const MARQUEE_ITEMS = [
@@ -46,13 +46,9 @@ function MarqueeFooter() {
 
 function HeroTopBar() {
   return (
-    <div className="absolute top-0 left-0 right-0 z-20 px-4 sm:px-6 md:px-8 py-3 sm:py-4 flex items-center justify-between gap-4 pointer-events-none">
-      <div className="text-[10px] sm:text-xs md:text-sm text-white/75 uppercase tracking-[0.18em] leading-snug max-w-[70%]">
+    <div className="absolute top-0 left-0 right-0 z-20 px-6 sm:px-10 md:px-16 py-5 sm:py-6 md:py-8 pointer-events-none">
+      <div className="text-center text-sm sm:text-base md:text-lg lg:text-xl text-white/85 uppercase tracking-[0.22em] leading-snug font-medium">
         Продвижение ключевых слов накруткой поведенческого фактора
-      </div>
-      <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-white/80 uppercase tracking-widest shrink-0 animate-bounce-soft">
-        <span>Листай</span>
-        <ChevronDown size={14} strokeWidth={2.5} />
       </div>
     </div>
   );
@@ -119,7 +115,7 @@ export default function Hero() {
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                  className="block text-[14vw] sm:text-[12vw] md:text-[11vw] lg:text-[10vw] xl:text-[9.5vw]"
+                  className="block text-[10vw] sm:text-[8.5vw] md:text-[7.5vw] lg:text-[7vw] xl:text-[6.5vw]"
                 >
                   БЕСПЛАТНЫЙ
                 </motion.span>
@@ -127,7 +123,7 @@ export default function Hero() {
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="block text-[14vw] sm:text-[13vw] md:text-[12vw] lg:text-[11vw] xl:text-[10vw] font-serif italic"
+                  className="block text-[10vw] sm:text-[8.5vw] md:text-[7.5vw] lg:text-[7vw] xl:text-[6.5vw] font-serif italic"
                   style={{ color: '#FFCC00' }}
                 >
                   ТЕСТ

@@ -1,12 +1,29 @@
 import {
+  motion,
   useScroll,
   useTransform,
   useMotionValueEvent,
   MotionValue,
 } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { ArrowRight, Users } from 'lucide-react';
+import { ArrowRight, Users, ChevronDown } from 'lucide-react';
 import { WordsPullUpMultiStyle } from '../components/WordsPullUpMultiStyle';
+
+// ---- Scroll hint pill ("Листай ↓") ----
+function ScrollHint({ progress }: { progress: MotionValue<number> }) {
+  const opacity = useTransform(progress, [0, 0.08, 0.2], [1, 1, 0]);
+  return (
+    <motion.div
+      style={{ opacity }}
+      className="absolute top-4 md:top-6 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0A1228]/70 backdrop-blur-md ring-1 ring-white/15 text-[10px] sm:text-[11px] text-white/80 uppercase tracking-widest"
+    >
+      <span>Листай</span>
+      <span className="animate-bounce-soft inline-flex">
+        <ChevronDown size={13} strokeWidth={2.5} />
+      </span>
+    </motion.div>
+  );
+}
 
 // ---- Notifications (arrive on scroll) ----
 interface Notif {
@@ -261,6 +278,7 @@ export default function Engagement() {
 
 
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
+        <ScrollHint progress={scrollYProgress} />
         <div className="relative w-full px-4 md:px-8 lg:px-12 max-w-[1400px] mx-auto">
           {/* Title — aligned with the right (charts) column, starts from phone's right edge */}
           <div className="mb-5 md:mb-8 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-6 md:gap-8 items-end">

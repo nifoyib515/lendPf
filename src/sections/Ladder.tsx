@@ -3,9 +3,26 @@ import {
   useScroll,
   useTransform,
   useMotionValueEvent,
+  MotionValue,
 } from 'framer-motion';
 import { useRef, useState, useMemo } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
+
+// ---- Scroll hint pill ("Листай ↓") ----
+function ScrollHint({ progress }: { progress: MotionValue<number> }) {
+  const opacity = useTransform(progress, [0, 0.08, 0.2], [1, 1, 0]);
+  return (
+    <motion.div
+      style={{ opacity }}
+      className="absolute top-4 md:top-6 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0A1228]/70 backdrop-blur-md ring-1 ring-white/15 text-[10px] sm:text-[11px] text-white/80 uppercase tracking-widest"
+    >
+      <span>Листай</span>
+      <span className="animate-bounce-soft inline-flex">
+        <ChevronDown size={13} strokeWidth={2.5} />
+      </span>
+    </motion.div>
+  );
+}
 
 // ---- Confetti burst on TOP-1 ----
 const CONFETTI_COLORS = ['#FFCC00', '#FC3F1D', '#FFFFFF', '#FFE066', '#FF8C42', '#FFA726', '#FFD54F'];
@@ -207,6 +224,8 @@ export default function Ladder() {
 
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
         <ConfettiBurst active={youAtTop} />
+        <ScrollHint progress={scrollYProgress} />
+
         <div className="relative w-full px-4 md:px-8 lg:px-12 max-w-[1400px] mx-auto">
           {/* Title */}
           <div className="mb-4 md:mb-6 flex items-end justify-between gap-6">
