@@ -8,36 +8,40 @@ import { useRef, useState, useMemo } from 'react';
 import { ArrowRight } from 'lucide-react';
 
 // ---- Confetti burst on TOP-1 ----
-const CONFETTI_COLORS = ['#FFCC00', '#FC3F1D', '#FFFFFF', '#FFE066', '#FF8C42'];
-const CONFETTI_COUNT = 28;
+const CONFETTI_COLORS = ['#FFCC00', '#FC3F1D', '#FFFFFF', '#FFE066', '#FF8C42', '#FFA726', '#FFD54F'];
+const CONFETTI_COUNT = 60;
 
 interface Particle {
   id: number;
-  x: number;   // % from center
-  y: number;   // end translate Y
-  r: number;   // rotation deg
+  startX: number; // % left position (0-100)
+  startY: number; // % top position (0-100)
+  tx: number;     // translate X (px)
+  ty: number;     // translate Y (px)
+  r: number;      // rotation deg
   size: number;
   color: string;
   delay: number;
-  side: 'left' | 'right';
-  shape: 'square' | 'rect' | 'circle';
+  dur: number;    // animation duration
+  shape: 'square' | 'rect' | 'circle' | 'strip';
 }
 
 function useConfettiParticles(): Particle[] {
   return useMemo(() => {
     const rng = (min: number, max: number) => min + Math.random() * (max - min);
+    const shapes: Particle['shape'][] = ['square', 'rect', 'circle', 'strip'];
     return Array.from({ length: CONFETTI_COUNT }, (_, i) => {
-      const side: 'left' | 'right' = i < CONFETTI_COUNT / 2 ? 'left' : 'right';
-      const shapes: Particle['shape'][] = ['square', 'rect', 'circle'];
+      const fromLeft = i % 2 === 0;
       return {
         id: i,
-        x: rng(10, 90) * (side === 'left' ? -1 : 1),
-        y: rng(-180, -40),
-        r: rng(-360, 360),
-        size: rng(4, 9),
+        startX: fromLeft ? rng(0, 12) : rng(88, 100),
+        startY: rng(5, 95),
+        tx: rng(60, 280) * (fromLeft ? 1 : -1),
+        ty: rng(-200, -30),
+        r: rng(-540, 540),
+        size: rng(5, 13),
         color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
-        delay: rng(0, 0.6),
-        side,
+        delay: rng(0, 0.9),
+        dur: rng(1.2, 2.2),
         shape: shapes[Math.floor(Math.random() * shapes.length)],
       };
     });
@@ -50,25 +54,31 @@ function ConfettiBurst({ active }: { active: boolean }) {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-20">
       {particles.map((p) => {
-        const originX = p.side === 'left' ? '15%' : '85%';
-        const borderRadius = p.shape === 'circle' ? '50%' : p.shape === 'rect' ? '1px' : '2px';
-        const w = p.shape === 'rect' ? p.size * 2 : p.size;
-        const h = p.shape === 'rect' ? p.size * 0.6 : p.size;
+        const borderRadius =
+          p.shape === 'circle' ? '50%' :
+          p.shape === 'strip' ? '1px' :
+          p.shape === 'rect' ? '2px' : '2px';
+        const w =
+          p.shape === 'strip' ? p.size * 2.5 :
+          p.shape === 'rect' ? p.size * 1.6 : p.size;
+        const h =
+          p.shape === 'strip' ? p.size * 0.35 :
+          p.shape === 'rect' ? p.size * 0.5 : p.size;
         return (
           <span
             key={p.id}
             className="absolute"
             style={{
-              left: originX,
-              top: '45%',
+              left: `${p.startX}%`,
+              top: `${p.startY}%`,
               width: w,
               height: h,
               borderRadius,
               background: p.color,
-              animation: `confetti-pop 1.4s ${p.delay}s cubic-bezier(.15,.9,.3,1) forwards`,
+              animation: `confetti-pop ${p.dur}s ${p.delay}s cubic-bezier(.15,.9,.3,1) forwards`,
               opacity: 0,
-              ['--tx' as string]: `${p.x}px`,
-              ['--ty' as string]: `${p.y}px`,
+              ['--tx' as string]: `${p.tx}px`,
+              ['--ty' as string]: `${p.ty}px`,
               ['--rot' as string]: `${p.r}deg`,
             }}
           />
