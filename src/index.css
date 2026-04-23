@@ -37,5 +37,13 @@ body { overflow-x: hidden; }
   backface-visibility: hidden;
 }
 
+/* Confetti burst on TOP-1 */
+@keyframes confetti-pop {
+  0%   { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(0); }
+  20%  { opacity: 1; transform: translate(calc(var(--tx) * 0.3), calc(var(--ty) * 0.3)) rotate(calc(var(--rot) * 0.3)) scale(1.2); }
+  80%  { opacity: 0.8; transform: translate(calc(var(--tx) * 0.85), calc(var(--ty) * 0.85)) rotate(calc(var(--rot) * 0.85)) scale(1); }
+  100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(0.4); }
+}
+
 /* Preserve Instrument Serif italic look */
 .font-serif { font-family: 'Instrument Serif', serif; font-style: italic; }

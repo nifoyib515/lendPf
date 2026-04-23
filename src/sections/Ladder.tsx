@@ -4,8 +4,79 @@ import {
   useTransform,
   useMotionValueEvent,
 } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { ArrowRight } from 'lucide-react';
+
+// ---- Confetti burst on TOP-1 ----
+const CONFETTI_COLORS = ['#FFCC00', '#FC3F1D', '#FFFFFF', '#FFE066', '#FF8C42'];
+const CONFETTI_COUNT = 28;
+
+interface Particle {
+  id: number;
+  x: number;   // % from center
+  y: number;   // end translate Y
+  r: number;   // rotation deg
+  size: number;
+  color: string;
+  delay: number;
+  side: 'left' | 'right';
+  shape: 'square' | 'rect' | 'circle';
+}
+
+function useConfettiParticles(): Particle[] {
+  return useMemo(() => {
+    const rng = (min: number, max: number) => min + Math.random() * (max - min);
+    return Array.from({ length: CONFETTI_COUNT }, (_, i) => {
+      const side: 'left' | 'right' = i < CONFETTI_COUNT / 2 ? 'left' : 'right';
+      const shapes: Particle['shape'][] = ['square', 'rect', 'circle'];
+      return {
+        id: i,
+        x: rng(10, 90) * (side === 'left' ? -1 : 1),
+        y: rng(-180, -40),
+        r: rng(-360, 360),
+        size: rng(4, 9),
+        color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
+        delay: rng(0, 0.6),
+        side,
+        shape: shapes[Math.floor(Math.random() * shapes.length)],
+      };
+    });
+  }, []);
+}
+
+function ConfettiBurst({ active }: { active: boolean }) {
+  const particles = useConfettiParticles();
+  if (!active) return null;
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-20">
+      {particles.map((p) => {
+        const originX = p.side === 'left' ? '15%' : '85%';
+        const borderRadius = p.shape === 'circle' ? '50%' : p.shape === 'rect' ? '1px' : '2px';
+        const w = p.shape === 'rect' ? p.size * 2 : p.size;
+        const h = p.shape === 'rect' ? p.size * 0.6 : p.size;
+        return (
+          <span
+            key={p.id}
+            className="absolute"
+            style={{
+              left: originX,
+              top: '45%',
+              width: w,
+              height: h,
+              borderRadius,
+              background: p.color,
+              animation: `confetti-pop 1.4s ${p.delay}s cubic-bezier(.15,.9,.3,1) forwards`,
+              opacity: 0,
+              ['--tx' as string]: `${p.x}px`,
+              ['--ty' as string]: `${p.y}px`,
+              ['--rot' as string]: `${p.r}deg`,
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+}
 import { WordsPullUpMultiStyle } from '../components/WordsPullUpMultiStyle';
 
 // ---- Competitors (fixed rows) ----
@@ -125,6 +196,7 @@ export default function Ladder() {
 
 
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
+        <ConfettiBurst active={youAtTop} />
         <div className="relative w-full px-4 md:px-8 lg:px-12 max-w-[1400px] mx-auto">
           {/* Title */}
           <div className="mb-4 md:mb-6 flex items-end justify-between gap-6">
