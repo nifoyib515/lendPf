@@ -286,7 +286,7 @@ export default function Engagement() {
           <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-6 md:gap-8 items-start">
             {/* LEFT: Phone with notifications */}
             <div className="flex flex-col items-center">
-              <div className="relative rounded-[2.2rem] p-2 bg-[#172036] ring-1 ring-white/5 shadow-[0_30px_60px_rgba(0,0,0,0.6)]">
+              <div className="relative rounded-[2.2rem] p-2 bg-black ring-1 ring-white/5 shadow-[0_30px_60px_rgba(0,0,0,0.6)]">
                 <div className="relative w-[260px] sm:w-[280px] h-[500px] sm:h-[540px] rounded-[1.8rem] bg-[#0E1424] overflow-hidden">
                   <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-full z-10" />
                   <div className="relative pt-8 px-4 flex items-center justify-between text-[10px] text-primary/80">
