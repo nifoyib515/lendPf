@@ -147,11 +147,23 @@ export default function Ladder() {
             <div className="bg-[#121a2d] rounded-2xl md:rounded-3xl p-4 sm:p-5 relative">
               {/* Yandex-style search bar */}
               <div className="mb-4 flex items-center gap-3 bg-[#0E1424] border border-white/10 rounded-full pl-1 pr-4 py-1">
-                <span
-                  className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0"
-                  style={{ background: '#FC3F1D' }}
-                >
-                  Я
+                <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 overflow-hidden">
+                  <img
+                    src="https://www.google.com/s2/favicons?domain=yandex.ru&sz=64"
+                    alt="Yandex"
+                    width={22}
+                    height={22}
+                    className="w-[22px] h-[22px]"
+                    loading="lazy"
+                    onError={(e) => {
+                      const t = e.currentTarget as HTMLImageElement;
+                      t.style.display = 'none';
+                      const parent = t.parentElement as HTMLElement;
+                      parent.textContent = 'Я';
+                      parent.className = 'w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0';
+                      parent.style.background = '#FC3F1D';
+                    }}
+                  />
                 </span>
                 <span className="text-sm sm:text-base text-white flex-1 truncate">
                   ремонт квартир
@@ -177,8 +189,22 @@ export default function Ladder() {
                       }}
                     >
                       <span className="text-xs w-10 shrink-0 text-gray-500">#{c.rank}</span>
-                      <span className="w-7 h-7 rounded-md bg-[#1e2844] text-[#9a9aaa] flex items-center justify-center text-xs font-bold shrink-0">
-                        {c.letter}
+                      <span className="w-7 h-7 rounded-md bg-white flex items-center justify-center shrink-0 overflow-hidden">
+                        <img
+                          src={`https://www.google.com/s2/favicons?domain=${c.domain}&sz=64`}
+                          alt=""
+                          width={20}
+                          height={20}
+                          className="w-5 h-5"
+                          loading="lazy"
+                          onError={(e) => {
+                            const t = e.currentTarget as HTMLImageElement;
+                            t.style.display = 'none';
+                            const parent = t.parentElement as HTMLElement;
+                            parent.textContent = c.letter;
+                            parent.className = 'w-7 h-7 rounded-md bg-[#1e2844] text-[#9a9aaa] flex items-center justify-center text-xs font-bold shrink-0';
+                          }}
+                        />
                       </span>
                       <div className="flex-1 min-w-0">
                         <div
