@@ -1,7 +1,6 @@
 import Hero from './sections/Hero';
 import Ladder from './sections/Ladder';
 import Engagement from './sections/Engagement';
-import Footer from './sections/Footer';
 
 export default function App() {
   return (
@@ -9,7 +8,6 @@ export default function App() {
       <Hero />
       <Ladder />
       <Engagement />
-      <Footer />
     </main>
   );
 }
