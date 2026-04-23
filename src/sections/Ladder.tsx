@@ -215,11 +215,10 @@ export default function Ladder() {
               <WordsPullUpMultiStyle
                 centered={false}
                 segments={[
-                  { text: 'От #28 до', className: 'text-primary' },
-                  { text: 'TOP-1', className: 'font-serif italic text-primary' },
-                  { text: '—', className: 'text-gray-500' },
-                  { text: 'сайт растёт,', className: 'text-primary' },
-                  { text: 'заявки летят.', className: 'font-serif italic text-primary' },
+                  { text: 'Как работает', className: 'text-primary' },
+                  { text: 'накрутка', className: 'font-serif italic text-primary' },
+                  { text: 'поведенческого', className: 'text-primary' },
+                  { text: 'фактора', className: 'font-serif italic text-primary' },
                 ]}
               />
             </h2>
