@@ -51,6 +51,13 @@ body { overflow-x: hidden; }
   backface-visibility: hidden;
 }
 
+/* Soft bounce for scroll indicator */
+@keyframes bounce-soft {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+.animate-bounce-soft { animation: bounce-soft 1.6s ease-in-out infinite; }
+
 /* Fire pulse for Repeat CTA */
 @keyframes fire-pulse {
   0%, 100% {

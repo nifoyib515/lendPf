@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { SplineScene } from '../components/ui/splite';
 
 const MARQUEE_ITEMS = [
@@ -22,23 +22,37 @@ function MarqueeItem({ item }: { item: string }) {
   return <span className="px-4 md:px-8 text-black">{item}</span>;
 }
 
-function Marquee() {
+function MarqueeFooter() {
   const loop = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
   return (
     <div
-      className="absolute top-0 left-0 right-0 z-20 overflow-hidden border-b border-black/20"
+      className="absolute bottom-0 left-0 right-0 z-20 overflow-hidden border-t border-black/20"
       style={{ background: '#FFCC00' }}
     >
-      <div className="flex whitespace-nowrap animate-marquee py-2 md:py-4">
+      <div className="flex whitespace-nowrap animate-marquee py-2 md:py-3">
         {loop.map((item, i) => (
           <span
             key={i}
-            className="flex items-center shrink-0 text-base sm:text-xl md:text-3xl lg:text-4xl font-medium tracking-tight"
+            className="flex items-center shrink-0 text-sm sm:text-lg md:text-2xl lg:text-3xl font-medium tracking-tight"
           >
             <MarqueeItem item={item} />
-            <span className="text-black/30 text-xl md:text-4xl font-thin">|</span>
+            <span className="text-black/30 text-lg md:text-3xl font-thin">|</span>
           </span>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function HeroTopBar() {
+  return (
+    <div className="absolute top-0 left-0 right-0 z-20 px-4 sm:px-6 md:px-8 py-3 sm:py-4 flex items-center justify-between gap-4 pointer-events-none">
+      <div className="text-[10px] sm:text-xs md:text-sm text-white/75 uppercase tracking-[0.18em] leading-snug max-w-[70%]">
+        Продвижение ключевых слов накруткой поведенческого фактора
+      </div>
+      <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-white/80 uppercase tracking-widest shrink-0 animate-bounce-soft">
+        <span>Листай</span>
+        <ChevronDown size={14} strokeWidth={2.5} />
       </div>
     </div>
   );
@@ -86,13 +100,16 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/80 pointer-events-none z-[1]" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent pointer-events-none z-[1]" />
 
-        {/* Running marquee */}
-        <Marquee />
+        {/* Top bar: tagline + scroll indicator */}
+        <HeroTopBar />
+
+        {/* Running marquee footer */}
+        <MarqueeFooter />
 
         {/* Bottom content */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 px-3 sm:px-6 md:px-8 pb-3 sm:pb-4 md:pb-6">
+        <div className="absolute bottom-0 left-0 right-0 z-10 px-3 sm:px-6 md:px-8 pb-14 sm:pb-16 md:pb-20">
           <div className="grid grid-cols-12 gap-2 sm:gap-3 md:gap-6 items-end">
-            {/* Heading: НАКРУТКА / ПФ (AI) */}
+            {/* Heading: БЕСПЛАТНЫЙ / ТЕСТ */}
             <div className="col-span-12 md:col-span-8">
               <h1
                 className="font-medium leading-[0.88] tracking-[-0.06em]"
@@ -102,24 +119,18 @@ export default function Hero() {
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                  className="block text-[14vw] sm:text-[13vw] md:text-[13vw] lg:text-[12vw] xl:text-[11vw]"
+                  className="block text-[14vw] sm:text-[12vw] md:text-[11vw] lg:text-[10vw] xl:text-[9.5vw]"
                 >
-                  НАКРУТКА
+                  БЕСПЛАТНЫЙ
                 </motion.span>
                 <motion.span
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="block text-[10vw] sm:text-[10vw] md:text-[10vw] lg:text-[9vw] xl:text-[8.5vw] font-serif italic"
-                  style={{ color: '#FFFFFF' }}
+                  className="block text-[14vw] sm:text-[13vw] md:text-[12vw] lg:text-[11vw] xl:text-[10vw] font-serif italic"
+                  style={{ color: '#FFCC00' }}
                 >
-                  ПФ{' '}
-                  <span
-                    className="not-italic font-medium"
-                    style={{ color: '#FFCC00' }}
-                  >
-                    (AI)
-                  </span>
+                  ТЕСТ
                 </motion.span>
               </h1>
             </div>
