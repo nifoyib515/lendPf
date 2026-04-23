@@ -5,7 +5,7 @@ import {
   MotionValue,
 } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Users } from 'lucide-react';
 import { WordsPullUpMultiStyle } from '../components/WordsPullUpMultiStyle';
 
 // ---- Notifications (arrive on scroll) ----
@@ -135,8 +135,9 @@ function MainChart({
     <div className="bg-white/[0.04] backdrop-blur-md rounded-2xl md:rounded-3xl p-4 sm:p-5 ring-1 ring-white/10">
       <div className="flex items-end justify-between mb-3">
         <div>
-          <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-widest mb-1">
-            CTR в Яндексе
+          <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-widest mb-1 flex items-center gap-1.5">
+            <Users size={12} strokeWidth={2.2} className="text-[#FFCC00]" />
+            Вовлечённость
           </div>
           <div className="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight" style={{ color: '#FFCC00' }}>
             {ctrNow.toFixed(1)}%
