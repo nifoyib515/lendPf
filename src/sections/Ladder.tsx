@@ -147,7 +147,7 @@ export default function Ladder() {
             <div className="bg-[#121a2d] rounded-2xl md:rounded-3xl p-4 sm:p-5 relative">
               {/* Yandex-style search bar */}
               <div className="mb-4 flex items-center gap-3 bg-[#0E1424] border border-white/10 rounded-full pl-1 pr-4 py-1">
-                <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 overflow-hidden">
+                <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 overflow-hidden border-2" style={{ borderColor: '#FC3F1D' }}>
                   <img
                     src="https://www.google.com/s2/favicons?domain=yandex.ru&sz=64"
                     alt="Yandex"
@@ -235,10 +235,18 @@ export default function Ladder() {
                     #{pos}
                   </span>
                   <span
-                    className="w-7 h-7 rounded-md flex items-center justify-center text-xs font-bold shrink-0"
-                    style={{ background: Y_YELLOW, color: '#000' }}
+                    className="w-7 h-7 rounded-md flex items-center justify-center shrink-0 relative overflow-hidden"
+                    style={{
+                      background: `linear-gradient(135deg, ${Y_YELLOW} 0%, #FFB800 100%)`,
+                      boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)',
+                    }}
                   >
-                    В
+                    <svg viewBox="0 0 24 24" className="w-4 h-4" aria-hidden>
+                      <path
+                        d="M7 4h6.5c2.8 0 4.5 1.5 4.5 4 0 1.8-1 3-2.5 3.5 1.8.5 3 1.9 3 4 0 2.8-2 4.5-5 4.5H7V4zm2.8 7h3.2c1.3 0 2-.7 2-1.7 0-1.1-.7-1.7-2-1.7H9.8V11zm0 6.2h3.6c1.4 0 2.2-.7 2.2-1.9 0-1.2-.8-1.9-2.2-1.9H9.8v3.8z"
+                        fill="#000"
+                      />
+                    </svg>
                   </span>
                   <div className="flex-1 min-w-0">
                     <div
