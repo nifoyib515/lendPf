@@ -79,7 +79,7 @@ export default function Hero() {
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="block text-[10vw] sm:text-[8.5vw] md:text-[7.5vw] lg:text-[7vw] xl:text-[6.5vw] font-serif italic"
+                  className="block text-[10vw] sm:text-[8.5vw] md:text-[7.5vw] lg:text-[7vw] xl:text-[6.5vw]"
                   style={{ color: '#FFCC00' }}
                 >
                   ТЕСТ
