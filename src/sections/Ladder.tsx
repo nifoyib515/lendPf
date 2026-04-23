@@ -118,7 +118,7 @@ export default function Ladder() {
 
   return (
     <section ref={ref} className="relative bg-[#0E1424]" style={{ height: '550vh' }}>
-      <div className="absolute inset-0 bg-noise opacity-[0.08] pointer-events-none" />
+
 
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
         <div className="relative w-full px-4 md:px-8 lg:px-12 max-w-[1400px] mx-auto">
@@ -147,23 +147,11 @@ export default function Ladder() {
             <div className="bg-[#121a2d] rounded-2xl md:rounded-3xl p-4 sm:p-5 relative">
               {/* Yandex-style search bar */}
               <div className="mb-4 flex items-center gap-3 bg-[#0E1424] border border-white/10 rounded-full pl-1 pr-4 py-1">
-                <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 overflow-hidden border-2" style={{ borderColor: '#FC3F1D' }}>
-                  <img
-                    src="https://www.google.com/s2/favicons?domain=yandex.ru&sz=64"
-                    alt="Yandex"
-                    width={22}
-                    height={22}
-                    className="w-[22px] h-[22px]"
-                    loading="lazy"
-                    onError={(e) => {
-                      const t = e.currentTarget as HTMLImageElement;
-                      t.style.display = 'none';
-                      const parent = t.parentElement as HTMLElement;
-                      parent.textContent = 'Я';
-                      parent.className = 'w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0';
-                      parent.style.background = '#FC3F1D';
-                    }}
-                  />
+                <span
+                  className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-white font-bold text-base"
+                  style={{ background: '#FD3D20', borderColor: '#FC3F1D' }}
+                >
+                  Я
                 </span>
                 <span className="text-sm sm:text-base text-white flex-1 truncate">
                   ремонт квартир
@@ -234,16 +222,11 @@ export default function Ladder() {
                   <span className="text-xs w-10 shrink-0 font-bold" style={{ color: posColor(pos) }}>
                     #{pos}
                   </span>
-                  <span
-                    className="w-7 h-7 rounded-md flex items-center justify-center shrink-0 relative overflow-hidden"
-                    style={{
-                      background: `linear-gradient(135deg, ${Y_YELLOW} 0%, #FFB800 100%)`,
-                      boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.15)',
-                    }}
-                  >
-                    <svg viewBox="0 0 24 24" className="w-4 h-4" aria-hidden>
+                  <span className="w-7 h-7 rounded-md bg-white flex items-center justify-center shrink-0 overflow-hidden">
+                    <svg viewBox="0 0 32 32" className="w-5 h-5" aria-hidden>
+                      <rect x="2" y="2" width="28" height="28" rx="6" fill={Y_YELLOW} />
                       <path
-                        d="M7 4h6.5c2.8 0 4.5 1.5 4.5 4 0 1.8-1 3-2.5 3.5 1.8.5 3 1.9 3 4 0 2.8-2 4.5-5 4.5H7V4zm2.8 7h3.2c1.3 0 2-.7 2-1.7 0-1.1-.7-1.7-2-1.7H9.8V11zm0 6.2h3.6c1.4 0 2.2-.7 2.2-1.9 0-1.2-.8-1.9-2.2-1.9H9.8v3.8z"
+                        d="M11 9h6.5c2.6 0 4.3 1.4 4.3 3.7 0 1.7-1 2.8-2.4 3.3 1.7.4 2.8 1.7 2.8 3.6 0 2.6-1.9 4.2-4.7 4.2H11V9zm2.6 6.6h3c1.2 0 1.9-.6 1.9-1.5 0-1-.7-1.5-1.9-1.5h-3v3zm0 5.8h3.4c1.3 0 2.1-.6 2.1-1.7 0-1.1-.8-1.7-2.1-1.7h-3.4v3.4z"
                         fill="#000"
                       />
                     </svg>

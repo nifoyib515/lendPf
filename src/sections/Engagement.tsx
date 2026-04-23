@@ -252,7 +252,7 @@ export default function Engagement() {
 
   return (
     <section ref={ref} className="relative bg-[#0E1424]" style={{ height: '400vh' }}>
-      <div className="absolute inset-0 bg-noise opacity-[0.08] pointer-events-none" />
+
 
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
         <div className="relative w-full px-4 md:px-8 lg:px-12 max-w-[1400px] mx-auto">
