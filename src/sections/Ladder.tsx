@@ -140,7 +140,7 @@ function formatNum(n: number): string {
 function Metric({ label, value, sub, accent }: { label: string; value: string; sub?: string; accent?: 'yellow' | 'red' | 'white' }) {
   const color = accent === 'yellow' ? '#FFCC00' : accent === 'red' ? '#FC3F1D' : '#FFFFFF';
   return (
-    <div className="bg-[#0A1228]/60 backdrop-blur-xl ring-1 ring-white/10 rounded-2xl p-3 sm:p-4 flex flex-col gap-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+    <div className="rounded-2xl p-3 sm:p-4 flex flex-col gap-1">
       <div className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-widest">
         {label}
       </div>
@@ -232,7 +232,7 @@ export default function Ladder() {
           {/* Main 2-column grid: SERP | metrics */}
           <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-4 md:gap-6 items-start">
             {/* LEFT: SERP ladder */}
-            <div className="bg-[#0A1228]/60 backdrop-blur-xl ring-1 ring-white/10 rounded-2xl md:rounded-3xl p-4 sm:p-5 relative shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+            <div className="rounded-2xl md:rounded-3xl p-4 sm:p-5 relative">
               {/* Yandex-style search bar */}
               <div className="mb-4 flex items-center gap-3 bg-[#0E1424] border border-white/10 rounded-full pl-1 pr-4 py-1">
                 <span
@@ -377,7 +377,7 @@ export default function Ladder() {
                 <Metric label="CTR"    value={`${ctr.toFixed(1)}%`} accent="yellow" />
                 <Metric label="Заявки" value={formatNum(leads)} accent="yellow" />
               </div>
-              <div className="flex items-center justify-between rounded-xl px-3 py-2 text-xs" style={{ background: Y_YELLOW }}>
+              <div className="flex items-center justify-between rounded-xl px-3 py-2 text-xs" style={{ background: '#FFFFFF' }}>
                 <span className="uppercase tracking-widest text-[10px] text-black/70 font-semibold">Выручка</span>
                 <span className="font-bold text-black text-sm">
                   {revenueK < 1000
