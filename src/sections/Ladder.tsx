@@ -264,7 +264,7 @@ export default function Ladder() {
               </div>
 
               {/* SERP pill container — выдача внутри контура */}
-              <div className="rounded-2xl border border-white/10 p-3 relative backdrop-blur-md" style={{ background: 'rgba(10, 18, 40, 0.45)' }}>
+              <div className="rounded-2xl p-3 relative">
               <div className="relative" style={{ height: ladderHeight }}>
                 {/* Competitor rows (static) */}
                 {COMPETITORS.map((c) => {
