@@ -3,47 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { SplineScene } from '../components/ui/splite';
 
-const MARQUEE_ITEMS = [
-  'БЫСТРЫЙ ТОП 1',
-  'ЗА 10 МИНУТ',
-  'БЕЗОПАСНО',
-  'ЯНДЕКС',
-  'БЕЗОПАСНО',
-];
-
-function MarqueeItem({ item }: { item: string }) {
-  if (item === 'ЯНДЕКС') {
-    return (
-      <span className="px-4 md:px-8 text-black font-semibold">
-        <span style={{ color: '#FC3F1D' }}>Я</span>НДЕКС
-      </span>
-    );
-  }
-  return <span className="px-4 md:px-8 text-black">{item}</span>;
-}
-
-function MarqueeFooter() {
-  const loop = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
-  return (
-    <div
-      className="absolute bottom-0 left-0 right-0 z-20 overflow-hidden border-t border-black/20"
-      style={{ background: '#FFCC00' }}
-    >
-      <div className="flex whitespace-nowrap animate-marquee py-2 md:py-3">
-        {loop.map((item, i) => (
-          <span
-            key={i}
-            className="flex items-center shrink-0 text-sm sm:text-lg md:text-2xl lg:text-3xl font-medium tracking-tight"
-          >
-            <MarqueeItem item={item} />
-            <span className="text-black/30 text-lg md:text-3xl font-thin">|</span>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function HeroTopBar() {
   return (
     <div className="absolute top-0 left-0 right-0 z-20 px-6 sm:px-10 md:px-16 py-5 sm:py-6 md:py-8 pointer-events-none">
@@ -96,14 +55,11 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/80 pointer-events-none z-[1]" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent pointer-events-none z-[1]" />
 
-        {/* Top bar: tagline + scroll indicator */}
+        {/* Top bar: tagline */}
         <HeroTopBar />
 
-        {/* Running marquee footer */}
-        <MarqueeFooter />
-
         {/* Bottom content */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 px-3 sm:px-6 md:px-8 pb-14 sm:pb-16 md:pb-20">
+        <div className="absolute bottom-0 left-0 right-0 z-10 px-3 sm:px-6 md:px-8 pb-3 sm:pb-4 md:pb-6">
           <div className="grid grid-cols-12 gap-2 sm:gap-3 md:gap-6 items-end">
             {/* Heading: БЕСПЛАТНЫЙ / ТЕСТ */}
             <div className="col-span-12 md:col-span-8">
