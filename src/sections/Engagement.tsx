@@ -145,7 +145,7 @@ function MainChart({
         </div>
         <div className="text-right">
           <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">рост</div>
-          <div className="text-sm sm:text-base font-semibold" style={{ color: '#FC3F1D' }}>
+          <div className="text-sm sm:text-base font-semibold" style={{ color: '#FFFFFF' }}>
             ×{(ctrNow / 0.2).toFixed(ctrNow > 1 ? 0 : 1)}
           </div>
         </div>
@@ -297,7 +297,7 @@ export default function Engagement() {
                     <div className="flex items-center justify-between px-1 text-[10px] text-gray-500 mb-0.5">
                       <span>Уведомления</span>
                       {notifCount > 0 ? (
-                        <span className="font-bold" style={{ color: '#FC3F1D' }}>
+                        <span className="font-bold" style={{ color: '#FFFFFF' }}>
                           +{notifCount} новых
                         </span>
                       ) : (
