@@ -223,8 +223,9 @@ export default function Ladder() {
                 ]}
               />
             </h2>
-            <span className="hidden md:inline-block text-[10px] text-gray-500 uppercase tracking-widest shrink-0 pb-1">
-              Скроллируйте ↓
+            <span className="hidden md:inline-flex items-center gap-1.5 text-sm lg:text-base font-semibold uppercase tracking-widest shrink-0 pb-1" style={{ color: '#FFCC00' }}>
+              Листайте
+              <span className="inline-block animate-bounce-soft">↓</span>
             </span>
           </div>
 
