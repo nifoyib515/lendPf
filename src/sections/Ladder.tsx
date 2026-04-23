@@ -202,7 +202,7 @@ export default function Ladder() {
   const ladderHeight = COMPETITORS.length * PITCH;
 
   return (
-    <section ref={ref} className="relative bg-[#0E1424]" style={{ height: '800vh' }}>
+    <section ref={ref} className="relative" style={{ height: '800vh' }}>
 
 
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
@@ -222,9 +222,6 @@ export default function Ladder() {
                 ]}
               />
             </h2>
-            <span className="hidden md:inline-block text-[10px] text-gray-500 uppercase tracking-widest shrink-0 pb-1">
-              Скроллируйте ↓
-            </span>
           </div>
 
           {/* Main 2-column grid: SERP | metrics */}

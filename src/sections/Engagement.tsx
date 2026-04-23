@@ -251,7 +251,7 @@ export default function Engagement() {
   const notifCount = NOTIFS.filter((n) => prog >= n.threshold - 0.015).length;
 
   return (
-    <section ref={ref} className="relative bg-[#0E1424]" style={{ height: '400vh' }}>
+    <section ref={ref} className="relative" style={{ height: '400vh' }}>
 
 
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
@@ -273,9 +273,6 @@ export default function Engagement() {
                   ]}
                 />
               </h2>
-              <span className="hidden md:inline-block text-[10px] text-gray-500 uppercase tracking-widest shrink-0 pb-1">
-                Скроллируйте ↓
-              </span>
             </div>
           </div>
 
