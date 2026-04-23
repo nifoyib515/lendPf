@@ -15,16 +15,16 @@ html,
   background: transparent;
 }
 
-/* Premium gradient body background — Yandex-accented, rich */
+/* Premium gradient body background — deep blue flashes */
 body {
   color: #FFFFFF;
   background:
-    radial-gradient(ellipse 70% 55% at 15% 8%, rgba(255, 204, 0, 0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 65% 50% at 90% 22%, rgba(252, 63, 29, 0.20) 0%, transparent 60%),
-    radial-gradient(ellipse 90% 60% at 50% 95%, rgba(255, 204, 0, 0.18) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 50% at 5% 70%, rgba(90, 130, 255, 0.16) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 50% at 85% 65%, rgba(180, 80, 220, 0.12) 0%, transparent 65%),
-    linear-gradient(180deg, #0A0F1E 0%, #0E1428 30%, #101635 50%, #0E1428 70%, #080D1A 100%);
+    radial-gradient(ellipse 70% 55% at 15% 8%, rgba(70, 110, 200, 0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 50% at 90% 22%, rgba(50, 90, 180, 0.26) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 60% at 50% 95%, rgba(40, 80, 170, 0.24) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 5% 70%, rgba(80, 120, 220, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 65%, rgba(60, 100, 190, 0.20) 0%, transparent 65%),
+    linear-gradient(180deg, #070B18 0%, #0A1228 30%, #0D1738 50%, #0A1228 70%, #060A18 100%);
   background-attachment: fixed;
   background-size: cover;
   min-height: 100vh;

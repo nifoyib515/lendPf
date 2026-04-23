@@ -140,7 +140,7 @@ function formatNum(n: number): string {
 function Metric({ label, value, sub, accent }: { label: string; value: string; sub?: string; accent?: 'yellow' | 'red' | 'white' }) {
   const color = accent === 'yellow' ? '#FFCC00' : accent === 'red' ? '#FC3F1D' : '#FFFFFF';
   return (
-    <div className="bg-white/[0.04] backdrop-blur-md ring-1 ring-white/10 rounded-2xl p-3 sm:p-4 flex flex-col gap-1">
+    <div className="bg-[#0A1228]/60 backdrop-blur-xl ring-1 ring-white/10 rounded-2xl p-3 sm:p-4 flex flex-col gap-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
       <div className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-widest">
         {label}
       </div>
@@ -227,7 +227,7 @@ export default function Ladder() {
           {/* Main 2-column grid: SERP | metrics */}
           <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-4 md:gap-6 items-start">
             {/* LEFT: SERP ladder */}
-            <div className="bg-white/[0.04] backdrop-blur-md ring-1 ring-white/10 rounded-2xl md:rounded-3xl p-4 sm:p-5 relative">
+            <div className="bg-[#0A1228]/60 backdrop-blur-xl ring-1 ring-white/10 rounded-2xl md:rounded-3xl p-4 sm:p-5 relative shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
               {/* Yandex-style search bar */}
               <div className="mb-4 flex items-center gap-3 bg-[#0E1424] border border-white/10 rounded-full pl-1 pr-4 py-1">
                 <span
@@ -243,7 +243,7 @@ export default function Ladder() {
               </div>
 
               {/* SERP pill container — выдача внутри контура */}
-              <div className="rounded-2xl border border-white/10 p-3 relative backdrop-blur-sm" style={{ background: 'rgba(255,255,255,0.02)' }}>
+              <div className="rounded-2xl border border-white/10 p-3 relative backdrop-blur-md" style={{ background: 'rgba(10, 18, 40, 0.45)' }}>
               <div className="relative" style={{ height: ladderHeight }}>
                 {/* Competitor rows (static) */}
                 {COMPETITORS.map((c) => {
@@ -251,7 +251,7 @@ export default function Ladder() {
                   return (
                     <div
                       key={c.rank}
-                      className={`absolute left-0 right-0 flex items-center gap-3 rounded-xl px-3 py-2.5 bg-white/[0.03] ring-1 ring-white/5 backdrop-blur-sm transition-opacity duration-300 ${
+                      className={`absolute left-0 right-0 flex items-center gap-3 rounded-xl px-3 py-2.5 bg-[#0A1228]/50 ring-1 ring-white/5 backdrop-blur-md transition-opacity duration-300 ${
                         hide ? 'opacity-0' : 'opacity-100'
                       }`}
                       style={{
@@ -300,7 +300,7 @@ export default function Ladder() {
                     height: ROW_H,
                     boxShadow: youAtTop ? `0 0 0 2px ${Y_YELLOW}` : '0 0 0 1.5px rgba(255,204,0,0.6)',
                   }}
-                  className="absolute left-0 right-0 z-10 flex items-center gap-3 rounded-xl px-3 bg-white/[0.06] ring-1 ring-white/10 backdrop-blur-md"
+                  className="absolute left-0 right-0 z-10 flex items-center gap-3 rounded-xl px-3 bg-[#0A1228]/70 ring-1 ring-white/15 backdrop-blur-xl"
                 >
                   <span className="text-xs w-10 shrink-0 font-bold" style={{ color: posColor(pos) }}>
                     #{pos}

@@ -56,7 +56,7 @@ function NotifRow({ n, progress }: { n: Notif; progress: MotionValue<number> }) 
         transition:
           'opacity 300ms ease-out, max-height 300ms ease-out, margin-top 300ms ease-out',
       }}
-      className="bg-white/[0.05] backdrop-blur-md rounded-xl ring-1 ring-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+      className="bg-[#0A1228]/65 backdrop-blur-xl rounded-xl ring-1 ring-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.06)]"
     >
       <div className="p-2.5 flex gap-2 items-start" style={{ height: `${NOTIF_H}px` }}>
         <div
@@ -132,7 +132,7 @@ function MainChart({
     fillPts.push(`${x},${y}`);
   }
   return (
-    <div className="bg-white/[0.04] backdrop-blur-md rounded-2xl md:rounded-3xl p-4 sm:p-5 ring-1 ring-white/10">
+    <div className="bg-[#0A1228]/60 backdrop-blur-xl rounded-2xl md:rounded-3xl p-4 sm:p-5 ring-1 ring-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
       <div className="flex items-end justify-between mb-3">
         <div>
           <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-widest mb-1 flex items-center gap-1.5">
@@ -212,7 +212,7 @@ function MiniStat({
   useMotionValueEvent(val, 'change', (v) => setValNow(v as number));
   const path = makeLinePath(W, H, startVal, endVal, maxY, prog, 24, curve);
   return (
-    <div className="bg-white/[0.04] backdrop-blur-md ring-1 ring-white/10 rounded-2xl p-3 sm:p-4 flex flex-col gap-2">
+    <div className="bg-[#0A1228]/60 backdrop-blur-xl ring-1 ring-white/10 rounded-2xl p-3 sm:p-4 flex flex-col gap-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
       <div className="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-widest">
         {label}
       </div>
