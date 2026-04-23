@@ -5,7 +5,7 @@ import {
   useMotionValueEvent,
 } from 'framer-motion';
 import { useRef, useState, useMemo } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Flame } from 'lucide-react';
 
 // ---- Confetti burst on TOP-1 ----
 const CONFETTI_COLORS = ['#FFCC00', '#FC3F1D', '#FFFFFF', '#FFE066', '#FF8C42', '#FFA726', '#FFD54F'];
@@ -381,22 +381,43 @@ export default function Ladder() {
                 </span>
               </div>
 
-              {/* Repeat-result CTA — visible only at TOP-1 */}
+              {/* Repeat-result CTA — fire style, visible only at TOP-1 */}
               <a
                 href="https://t.me/TopPfBot"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-center justify-between rounded-xl px-4 py-3 mt-1 transition-all duration-500 ${
+                className={`relative group flex items-center justify-between rounded-xl px-4 py-3 mt-1 overflow-hidden transition-all duration-500 ${
                   youAtTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
                 }`}
-                style={{ background: Y_YELLOW, color: '#000' }}
+                style={{
+                  background: 'linear-gradient(135deg, #FFCC00 0%, #FF8A00 45%, #FC3F1D 100%)',
+                  color: '#000',
+                  boxShadow: '0 0 0 1px rgba(255,170,50,0.5), 0 8px 24px -4px rgba(252,63,29,0.55), 0 0 32px rgba(255,138,0,0.35)',
+                  animation: youAtTop ? 'fire-pulse 2.2s ease-in-out infinite' : 'none',
+                }}
               >
-                <span className="text-sm font-semibold">Повторить результат</span>
+                {/* animated shimmer sweep */}
                 <span
-                  className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
-                  style={{ background: '#000' }}
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background: 'linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.55) 50%, transparent 70%)',
+                    animation: youAtTop ? 'fire-shimmer 2.6s linear infinite' : 'none',
+                    mixBlendMode: 'overlay',
+                  }}
+                />
+                <span className="relative flex items-center gap-2 text-sm font-bold tracking-tight">
+                  <Flame size={16} strokeWidth={2.5} className="shrink-0" style={{ filter: 'drop-shadow(0 0 6px rgba(255,120,0,0.8))' }} />
+                  Повторить результат
+                </span>
+                <span
+                  className="relative w-7 h-7 rounded-full flex items-center justify-center shrink-0"
+                  style={{
+                    background: '#000',
+                    boxShadow: '0 0 10px rgba(252,63,29,0.6)',
+                  }}
                 >
-                  <ArrowRight size={14} color={Y_YELLOW} strokeWidth={2.5} />
+                  <ArrowRight size={14} color="#FF9A1F" strokeWidth={2.8} />
                 </span>
               </a>
             </div>
