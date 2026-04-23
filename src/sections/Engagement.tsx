@@ -19,12 +19,12 @@ interface Notif {
 }
 
 const NOTIFS: Notif[] = [
-  { from: 'Алексей',     text: 'Здравствуйте! Нашёл вас в Яндексе, подскажите цену ремонта однушки?', time: '10:24', letter: 'W', tint: '#25d366', threshold: 0.18 },
-  { from: 'Марина',      text: 'Можно смету на двушку 54 м² в Химках?',                                time: '10:37', letter: 'T', tint: '#29a9ea', threshold: 0.32 },
-  { from: 'Заявка #247', text: 'Новый клиент с органики · Иван · +7 (903) ***-**-12',                  time: '10:41', letter: '✦', tint: '#DEDBC8', threshold: 0.48 },
-  { from: 'Екатерина',   text: 'Добрый день! Свободны ли вы на следующую неделю для замера?',          time: '11:15', letter: 'W', tint: '#25d366', threshold: 0.62 },
-  { from: 'Дмитрий',     text: 'Увидел ваш сайт в топе Яндекса, хочу обсудить проект',                 time: '11:29', letter: 'T', tint: '#29a9ea', threshold: 0.76 },
-  { from: 'Заявка #251', text: 'Новый клиент с органики · Ольга · +7 (915) ***-**-47',                 time: '11:48', letter: '✦', tint: '#DEDBC8', threshold: 0.88 },
+  { from: 'Заявка #241', text: 'Пришла новая заявка с сайта', time: '10:12', letter: '✦', tint: '#FFCC00', threshold: 0.12 },
+  { from: 'Заявка #242', text: 'Пришла новая заявка с сайта', time: '10:24', letter: '✦', tint: '#FFCC00', threshold: 0.26 },
+  { from: 'Заявка #243', text: 'Пришла новая заявка с сайта', time: '10:37', letter: '✦', tint: '#FFCC00', threshold: 0.40 },
+  { from: 'Заявка #244', text: 'Пришла новая заявка с сайта', time: '10:51', letter: '✦', tint: '#FFCC00', threshold: 0.54 },
+  { from: 'Заявка #245', text: 'Пришла новая заявка с сайта', time: '11:15', letter: '✦', tint: '#FFCC00', threshold: 0.68 },
+  { from: 'Заявка #246', text: 'Пришла новая заявка с сайта', time: '11:38', letter: '✦', tint: '#FFCC00', threshold: 0.82 },
 ];
 
 const NOTIF_H = 64; // px — natural height of each notification
@@ -36,11 +36,16 @@ const NOTIF_GAP = 6; // px — margin-top between notifications
 function NotifRow({ n, progress }: { n: Notif; progress: MotionValue<number> }) {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-    const check = () => setVisible(progress.get() >= n.threshold);
+    let raf: number;
+    const check = () => {
+      const v = progress.get() >= n.threshold;
+      if (v !== visible) setVisible(v);
+    };
+    const onChange = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(check); };
     check();
-    const unsub = progress.on('change', check);
-    return () => unsub();
-  }, [progress, n.threshold]);
+    const unsub = progress.on('change', onChange);
+    return () => { unsub(); cancelAnimationFrame(raf); };
+  }, [progress, n.threshold, visible]);
   return (
     <div
       style={{
@@ -49,7 +54,7 @@ function NotifRow({ n, progress }: { n: Notif; progress: MotionValue<number> }) 
         marginTop: visible ? `${NOTIF_GAP}px` : '0px',
         overflow: 'hidden',
         transition:
-          'opacity 420ms cubic-bezier(0.22, 1, 0.36, 1), max-height 420ms cubic-bezier(0.22, 1, 0.36, 1), margin-top 420ms cubic-bezier(0.22, 1, 0.36, 1)',
+          'opacity 300ms ease-out, max-height 300ms ease-out, margin-top 300ms ease-out',
       }}
       className="bg-[#1a2540] rounded-xl ring-1 ring-white/5 shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
     >
@@ -57,8 +62,8 @@ function NotifRow({ n, progress }: { n: Notif; progress: MotionValue<number> }) 
         <div
           className="w-7 h-7 rounded-lg flex items-center justify-center text-[12px] font-bold shrink-0"
           style={{
-            background: n.tint === '#DEDBC8' ? '#FFCC00' : n.tint,
-            color: n.tint === '#DEDBC8' ? '#000' : '#fff',
+            background: n.tint,
+            color: '#000',
           }}
         >
           {n.letter}
@@ -127,7 +132,7 @@ function MainChart({
     fillPts.push(`${x},${y}`);
   }
   return (
-    <div className="bg-[#121a2d] rounded-2xl md:rounded-3xl p-4 sm:p-5">
+    <div className="bg-[#121a2d] rounded-2xl md:rounded-3xl p-4 sm:p-5 ring-1 ring-white/5">
       <div className="flex items-end justify-between mb-3">
         <div>
           <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-widest mb-1">
@@ -281,7 +286,7 @@ export default function Engagement() {
             {/* LEFT: Phone with notifications */}
             <div className="flex flex-col items-center">
               <div className="relative rounded-[2.2rem] p-2 bg-[#172036] ring-1 ring-white/5 shadow-[0_30px_60px_rgba(0,0,0,0.6)]">
-                <div className="relative w-[260px] sm:w-[280px] h-[500px] sm:h-[540px] rounded-[1.8rem] bg-[#0b0b0b] overflow-hidden">
+                <div className="relative w-[260px] sm:w-[280px] h-[500px] sm:h-[540px] rounded-[1.8rem] bg-[#0E1424] overflow-hidden">
                   <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-5 bg-black rounded-full z-10" />
                   <div className="relative pt-8 px-4 flex items-center justify-between text-[10px] text-primary/80">
                     <span>9:41</span>
