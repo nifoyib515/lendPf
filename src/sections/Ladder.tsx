@@ -382,14 +382,14 @@ export default function Ladder() {
                 className={`flex items-center justify-between rounded-xl px-4 py-3 mt-1 transition-all duration-500 ${
                   youAtTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-2 pointer-events-none'
                 }`}
-                style={{ background: '#FFFFFF', color: '#000' }}
+                style={{ background: Y_YELLOW, color: '#000' }}
               >
                 <span className="text-sm font-semibold">Повторить результат</span>
                 <span
                   className="w-7 h-7 rounded-full flex items-center justify-center shrink-0"
                   style={{ background: '#000' }}
                 >
-                  <ArrowRight size={14} color="#FFCC00" strokeWidth={2.5} />
+                  <ArrowRight size={14} color={Y_YELLOW} strokeWidth={2.5} />
                 </span>
               </a>
             </div>
