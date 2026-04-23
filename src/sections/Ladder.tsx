@@ -145,9 +145,22 @@ export default function Ladder() {
           <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_1fr] gap-4 md:gap-6 items-start">
             {/* LEFT: SERP ladder */}
             <div className="bg-[#121a2d] rounded-2xl md:rounded-3xl p-4 sm:p-5 relative">
-              <div className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-widest mb-4">
-                Выдача Яндекса
+              {/* Yandex-style search bar */}
+              <div className="mb-4 flex items-center gap-3 bg-[#0E1424] border border-white/10 rounded-full pl-1 pr-4 py-1">
+                <span
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0"
+                  style={{ background: '#FC3F1D' }}
+                >
+                  Я
+                </span>
+                <span className="text-sm sm:text-base text-white flex-1 truncate">
+                  ремонт квартир
+                </span>
+                <span className="text-gray-500 text-lg leading-none shrink-0">×</span>
               </div>
+
+              {/* SERP pill container — выдача внутри контура */}
+              <div className="rounded-2xl border border-white/10 p-3 relative" style={{ background: 'rgba(255,255,255,0.01)' }}>
               <div className="relative" style={{ height: ladderHeight }}>
                 {/* Competitor rows (static) */}
                 {COMPETITORS.map((c) => {
@@ -226,6 +239,7 @@ export default function Ladder() {
                   )}
                 </motion.div>
               </div>
+              </div>{/* end SERP pill container */}
             </div>
 
             {/* RIGHT: position + status + metrics */}
