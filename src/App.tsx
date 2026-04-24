@@ -6,8 +6,10 @@ export default function App() {
   return (
     <main className="text-primary min-h-screen">
       <Hero />
-      <Ladder />
-      <Engagement />
+      <div className="hidden md:block">
+        <Ladder />
+        <Engagement />
+      </div>
     </main>
   );
 }
