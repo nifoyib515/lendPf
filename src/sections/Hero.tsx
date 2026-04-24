@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { SplineScene } from '../components/ui/splite';
 
@@ -13,29 +12,7 @@ function HeroTopBar() {
   );
 }
 
-function Preloader({ visible }: { visible: boolean }) {
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-0 z-[60] bg-[#0E1424] flex items-center justify-center"
-        >
-          <div
-            className="w-14 h-14 rounded-full border-[3px] border-white/10 animate-spin"
-            style={{ borderTopColor: '#FFCC00' }}
-          />
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
-
 export default function Hero() {
-  const [sceneLoaded, setSceneLoaded] = useState(false);
-
   return (
     <section className="h-screen w-full p-3 sm:p-4 md:p-6">
       <div className="relative w-full h-full rounded-2xl md:rounded-[2rem] overflow-hidden bg-[#0E1424]">
@@ -44,7 +21,6 @@ export default function Hero() {
           <SplineScene
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full"
-            onLoad={() => setSceneLoaded(true)}
           />
         </div>
 
@@ -147,8 +123,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Preloader overlay */}
-        <Preloader visible={!sceneLoaded} />
       </div>
     </section>
   );
